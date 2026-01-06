@@ -395,11 +395,21 @@
       let aff = getAffiliate();
       if(!aff || !aff.code){ aff = { code:"", at: Date.now() }; }
 
-     const baseUrl = new URL("./", window.location.href).href; 
-const shareLink = aff.code ? `${baseUrl}?aff=${encodeURIComponent(aff.code)}` : "";
+  // Build a share link that ALWAYS stays inside the repo folder (GitHub Pages safe)
+const u = new URL(window.location.href);
 
-      const clicks = store.get("chb_clicks", {});
-      const totalClicks = Object.values(clicks).reduce((a,b)=>a+b,0);
+// remove any existing query/hash
+u.search = "";
+u.hash = "";
+
+// if user is on /index.html, strip it so we're at the folder
+u.pathname = u.pathname.replace(/index\.html$/i, "");
+
+// ensure it ends with a slash
+if (!u.pathname.endsWith("/")) u.pathname += "/";
+
+const baseUrl = u.toString();
+const shareLink = aff.code ? `${baseUrl}?aff=${encodeURIComponent(aff.code)}` : "";
 
       app.innerHTML = `
         <div class="wrap">
