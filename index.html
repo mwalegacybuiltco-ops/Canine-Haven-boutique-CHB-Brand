@@ -392,12 +392,26 @@ const totalClicks = Object.values(clicks).reduce((a,b)=>a+b,0);
           <div class="footer"></div>
         </div>
       `;
-const unlockBtn = $("#unlock");
+const unlockBtn = document.getElementById("unlock");
 
-unlockBtn.addEventListener("click", (e)=>{
-  e.preventDefault();
-  e.stopPropagation();
-});
+if (unlockBtn) {
+  const doUnlock = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const pin = (document.getElementById("pin")?.value || "").trim();
+    if (pin === String(CFG.affiliate.pin)) {
+      store.set("chb_aff_unlocked", true);
+      renderAffiliateCenter();
+    } else {
+      showToast("Incorrect PIN");
+    }
+  };
+
+  unlockBtn.onclick = doUnlock; // desktop
+  unlockBtn.addEventListener("touchstart", doUnlock, { passive: false }); // phone
+}
+
 
       $("#unlock").onclick = ()=>{
         const pin = ($("#pin").value||"").trim();
