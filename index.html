@@ -362,6 +362,9 @@ const store = {
 
       const aff = getAffiliate();
       const hasAff = aff && aff.code;
+// simple stats
+const clicks = store.get("chb_clicks", {});
+const totalClicks = Object.values(clicks).reduce((a,b)=>a+b,0);
 
       app.innerHTML = `
         <div class="wrap">
