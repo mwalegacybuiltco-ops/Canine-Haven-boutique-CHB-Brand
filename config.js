@@ -1,24 +1,22 @@
 // config.js
-// Paste your Beacons / website pages and Google Forms here.
+// Paste your Beacons links and Google Form LINKS here (no iframes)
+
 window.CHB_CONFIG = {
   affiliate: {
     pin: "1234",          // change this
-    commissionRate: 0.15  // used only for estimates
+    commissionRate: 0.15  // estimates only
   },
 
-  // PUBLIC (customers can see these)
- publicPages: {
-  becomeAffiliate: "<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc2FQkP_9mUb2Y_Lcj1zYjiFzLbABckOQvjH02sFzXFSmKIkg/viewform?embedded=true" width="640" height="3200" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>",
-  ...
-}
-
+  // PUBLIC PAGES (customers can see these)
+  publicPages: {
+    becomeAffiliate: "https://docs.google.com/forms/d/e/1FAIpQLSc2FQkP_9mUb2Y_Lcj1zYjiFzLbABckOQvjH02sFzXFSmKIkg/viewform",
     support: "https://forms.gle/PASTE_SUPPORT",
     shippingReturns: "https://beacons.ai/PASTE_SHIPPING_RETURNS",
     faqs: "https://beacons.ai/PASTE_FAQS",
     contact: "https://beacons.ai/PASTE_CONTACT"
   },
 
-  // MENU LINKS (these are “website pages” you said you’ll add)
+  // MENU LINKS
   menuLinks: {
     shop: {
       apparel: "https://beacons.ai/PASTE_APPAREL_PAGE",
