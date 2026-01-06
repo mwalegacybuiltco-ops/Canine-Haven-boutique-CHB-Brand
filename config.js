@@ -30,7 +30,7 @@ window.CHB_CONFIG = {
       community: "https://instagram.com/PASTE_INSTAGRAM"
     },
     workWithUs: {
-      shareEarn: "https://beacons.ai/PASTE_SHARE_EARN"
+      shareEarn: "https://docs.google.com/forms/d/e/1FAIpQLSc2FQkP_9mUb2Y_Lcj1zYjiFzLbABckOQvjH02sFzXFSmKIkg/viewform?usp=header"
     }
   },
 
