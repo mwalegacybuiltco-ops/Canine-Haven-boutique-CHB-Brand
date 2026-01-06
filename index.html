@@ -76,11 +76,35 @@
     const app = document.getElementById("app");
     const toast = document.getElementById("toast");
 
-    const store = {
-      get(k,d=null){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):d }catch(e){ return d } },
-      set(k,v){ localStorage.setItem(k, JSON.stringify(v)); },
-      del(k){ localStorage.removeItem(k); }
-    };
+   // Mobile-safe storage (works even if localStorage is blocked)
+const __memStore = {};
+
+const store = {
+  get(k, d=null){
+    try{
+      const v = localStorage.getItem(k);
+      return v ? JSON.parse(v) : (k in __memStore ? __memStore[k] : d);
+    }catch(e){
+      return (k in __memStore ? __memStore[k] : d);
+    }
+  },
+  set(k, v){
+    __memStore[k] = v; // fallback always
+    try{
+      localStorage.setItem(k, JSON.stringify(v));
+      return true;
+    }catch(e){
+      // This is the common iPhone Private Browsing / storage-block issue
+      showToast("Storage blocked on this browser. Turn off Private Browsing, then refresh.");
+      return false;
+    }
+  },
+  del(k){
+    delete __memStore[k];
+    try{ localStorage.removeItem(k); }catch(e){}
+  }
+};
+
 
     function showToast(msg){
       toast.textContent = msg;
