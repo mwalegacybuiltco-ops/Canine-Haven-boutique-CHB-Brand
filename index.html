@@ -389,6 +389,12 @@ const store = {
           <div class="footer"></div>
         </div>
       `;
+const unlockBtn = $("#unlock");
+
+unlockBtn.addEventListener("click", (e)=>{
+  e.preventDefault();
+  e.stopPropagation();
+});
 
       $("#unlock").onclick = ()=>{
         const pin = ($("#pin").value||"").trim();
