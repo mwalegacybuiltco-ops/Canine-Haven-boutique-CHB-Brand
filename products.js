@@ -3,7 +3,8 @@
 // Image paths must be relative to index.html, like:
 //   image: "assets/products/myproduct.jpg"
 
-window.CHB_PRODUCTS = [
+window.CHB_PRODUCTS = [];
+
   // Example:
   // {
   //   id: "p1",
